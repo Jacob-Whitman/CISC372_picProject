@@ -185,17 +185,17 @@ int main(int argc,char** argv){
     destImage.width=srcImage.width;
     destImage.data=malloc(sizeof(uint8_t)*destImage.width*destImage.bpp*destImage.height);
 
-    struct timespec c1, c2;
-    clock_gettime(CLOCK_MONOTONIC, &c1);
+    //struct timespec c1, c2;
+    //clock_gettime(CLOCK_MONOTONIC, &c1);
     convolute(&srcImage,&destImage,algorithms[type]);
-    clock_gettime(CLOCK_MONOTONIC, &c2);
+    //clock_gettime(CLOCK_MONOTONIC, &c2);
     stbi_write_png("output.png",destImage.width,destImage.height,destImage.bpp,destImage.data,destImage.bpp*destImage.width);
     stbi_image_free(srcImage.data);
     
     free(destImage.data);
     t2=time(NULL);
-    long conv_ms = (c2.tv_sec - c1.tv_sec)*1000 + (c2.tv_nsec - c1.tv_nsec)/1000000;
-    printf("Convolution took %ld ms\n", conv_ms);
+    //long conv_ms = (c2.tv_sec - c1.tv_sec)*1000 + (c2.tv_nsec - c1.tv_nsec)/1000000;
+    //printf("Convolution took %ld ms\n", conv_ms);
     printf("Total took %ld seconds\n",t2-t1);
    return 0;
 }
